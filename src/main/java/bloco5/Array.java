@@ -1,16 +1,21 @@
 package bloco5;
 
+import java.util.Arrays;
+
 public class Array {
     //Desenvolva uma classe Array (ou Vetor, se preferir) que encapsule um vetor de inteiros (i.e. int vetor[])
     //através dos seguintes métodos:
-    private int[] vector;
+    protected int[] vector;
     String valueNotFound = "Value not found";
     String dividingByZero = "Dividing a number by 0 is not allowed in this universe";
 
     public int[] getVector() {
         return this.vector;
-    }
 
+    }
+    public int [] getCopyOfVector(){
+        return Arrays.copyOf(this.vector, this.vector.length);
+    }
     //a) Construtor público em que o vetor encapsulado fica vazio (i.e. sem valores).
     public Array() {
         this.vector = new int[0];

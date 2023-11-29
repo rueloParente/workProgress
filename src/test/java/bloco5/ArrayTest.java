@@ -498,6 +498,32 @@ class ArrayTest {
         //Assert
         assertArrayEquals(expected, result);
     }
+    //
+    @Test
+    void checkIfValueWasAdded() {
+        //Arrange
+        Array myArray = new Array(new int[]{1, 2, 3, 4, 5});
+        int value = 6;
+        int expected = 6;
+        //Act
+        myArray.addValue(value);
+        int result = myArray.returnsBiggestElement();
+        //Assert
+        assertEquals(expected, result);
+    }
+    @Test
+    void checkIfValueWasAdded2() {
+        //Arrange
+        Array myArray = new Array(new int[]{1, 2, 3, 4, 5});
+        int value = 3;
+        int expected = 6;
+        //Act
+        myArray.addValue(value);
+        int result = myArray.returnsLengthOfArray();
+        //Assert
+        assertEquals(expected, result);
+    }
+
     // With a negative value
     @Test
     void shouldAddANegativeValueToTheArray() {
@@ -684,6 +710,15 @@ class ArrayTest {
         //Assert
         assertEquals(expected, result);
     }
-
+    @Test
+    void checkCopy() {
+        //Arrange
+        Array myArray = new Array(new int[]{1, 2, 3, 4, 5});
+       //Act
+        int[] result = myArray.getVector();
+        int[] secondArray = myArray.getCopyOfVector();
+        //Assert
+        assertArrayEquals(result, secondArray);
+    }
 
 }
