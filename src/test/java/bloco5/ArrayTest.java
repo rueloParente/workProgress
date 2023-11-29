@@ -537,4 +537,153 @@ class ArrayTest {
         //Assert
         assertArrayEquals(expected, result);
     }
+    //n) Retorne True caso o vetor esteja vazio e False em caso contrário.
+    //with empty array
+    @Test
+    void shouldReturnTrueIfTheArrayIsEmpty() {
+        //Arrange
+        Array myArray = new Array();
+        boolean expected = true;
+        //Act
+        boolean result = myArray.checksIfArrayIsEmpty();
+        //Assert
+        assertEquals(expected, result);
+    }
+    //with not empty array
+    @Test
+    void shouldReturnFalseIfTheArrayIsNotEmpty() {
+        //Arrange
+        Array myArray = new Array(new int[]{1, 2, 3, 4, 5});
+        boolean expected = false;
+        //Act
+        boolean result = myArray.checksIfArrayIsEmpty();
+        //Assert
+        assertEquals(expected, result);
+    }
+    //test with array with zeros
+    @Test
+    void shouldReturnFalseIfTheArrayIsNotEmptyWithZeros() {
+        //Arrange
+        Array myArray = new Array(new int[]{0, 0, 0, 0, 0});
+        boolean expected = false;
+        //Act
+        boolean result = myArray.checksIfArrayIsEmpty();
+        //Assert
+        assertEquals(expected, result);
+    }
+    //o) Retorne True caso o vetor contenha apenas um elemento e False em caso contrário.
+    //with empty array
+    @Test
+    void shouldReturnFalseIfTheArrayIsEmpty() {
+        //Arrange
+        Array myArray = new Array();
+        boolean expected = false;
+        //Act
+        boolean result = myArray.checksIfArrayHasOnlyOneElement();
+        //Assert
+        assertEquals(expected, result);
+    }
+    //with array with only one element
+    @Test
+    void shouldReturnTrueIfTheArrayHasOnlyOneElement() {
+        //Arrange
+        Array myArray = new Array(new int[]{1});
+        boolean expected = true;
+        //Act
+        boolean result = myArray.checksIfArrayHasOnlyOneElement();
+        //Assert
+        assertEquals(expected, result);
+    }
+    //with array with more than one element
+    @Test
+    void shouldReturnFalseIfTheArrayHasMoreThanOneElement() {
+        //Arrange
+        Array myArray = new Array(new int[]{1, 2, 3, 4, 5});
+        boolean expected = false;
+        //Act
+        boolean result = myArray.checksIfArrayHasOnlyOneElement();
+        //Assert
+        assertEquals(expected, result);
+    }
+    //with one element zero
+    @Test
+    void shouldReturnTrueIfTheArrayHasOnlyOneElementWithZero() {
+        //Arrange
+        Array myArray = new Array(new int[]{0});
+        boolean expected = true;
+        //Act
+        boolean result = myArray.checksIfArrayHasOnlyOneElement();
+        //Assert
+        assertEquals(expected, result);
+    }
+    //p) Retorne True se o vetor tiver apenas elementos pares e False em caso contrário.
+    //with array with only even elements
+    @Test
+    void shouldReturnTrueIfTheArrayHasOnlyEvenElements() {
+        //Arrange
+        Array myArray = new Array(new int[]{2, 4, 6, 8});
+        boolean expected = true;
+        //Act
+        boolean result = myArray.checksIfArrayHasOnlyEvenElements();
+        //Assert
+        assertEquals(expected, result);
+    }
+    //with array with only odd elements
+    @Test
+    void shouldReturnFalseIfTheArrayHasOnlyOddElements() {
+        //Arrange
+        Array myArray = new Array(new int[]{1, 3, 5, 7});
+        boolean expected = false;
+        //Act
+        boolean result = myArray.checksIfArrayHasOnlyEvenElements();
+        //Assert
+        assertEquals(expected, result);
+    }
+    //with array with even and odd elements
+    @Test
+    void shouldReturnFalseIfTheArrayHasEvenAndOddElements() {
+        //Arrange
+        Array myArray = new Array(new int[]{1, 2, 3, 4, 5, 6, 7, 8});
+        boolean expected = false;
+        //Act
+        boolean result = myArray.checksIfArrayHasOnlyEvenElements();
+        //Assert
+        assertEquals(expected, result);
+    }
+    //q) Retorne True se o vetor tiver apenas elementos ímpares e False em caso contrário.
+    //with array with only odd elements
+    @Test
+    void shouldReturnTrueIfTheArrayHasOnlyOddElements() {
+        //Arrange
+        Array myArray = new Array(new int[]{1, 3, 5, 7});
+        boolean expected = true;
+        //Act
+        boolean result = myArray.checksIfArrayHasOnlyOddElements();
+        //Assert
+        assertEquals(expected, result);
+    }
+    //with array with only even elements
+    @Test
+    void shouldReturnFalseIfTheArrayHasOnlyEvenElements2() {
+        //Arrange
+        Array myArray = new Array(new int[]{2, 4, 6, 8});
+        boolean expected = false;
+        //Act
+        boolean result = myArray.checksIfArrayHasOnlyOddElements();
+        //Assert
+        assertEquals(expected, result);
+    }
+    //with array with even and odd elements
+    @Test
+    void shouldReturnFalseIfTheArrayHasEvenAndOddElements2() {
+        //Arrange
+        Array myArray = new Array(new int[]{1, 2, 3, 4, 5, 6, 7, 8});
+        boolean expected = false;
+        //Act
+        boolean result = myArray.checksIfArrayHasOnlyOddElements();
+        //Assert
+        assertEquals(expected, result);
+    }
+
+
 }

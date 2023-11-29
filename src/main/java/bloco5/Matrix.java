@@ -2,18 +2,79 @@ package bloco5;
 
 public class Matrix {
     private int[][] matrix;
-
+    //Get matrix
+    public int[][] getMatrix() {
+        return matrix;
+    }
     //a) Construtor público em que o array encapsulado fica vazio
     public Matrix () {
         this.matrix = new int[0][0];
     }
     //b) Construtor público que permita inicializar o array encapsulado com alguns valores.
     public Matrix(int[][] matrix) {
+
         this.matrix = matrix;
+    }
+    //c) Adicione um novo elemento (valor) ao array encapsulado numa determinada linha, criando assim
+    //uma nova coluna nessa linha.
+    public void addElement(int line, int element) {
+        int[][] newMatrix = new int[this.matrix.length][];
+        for (int i = 0; i < this.matrix.length; i++) {
+            if (i == line) {
+                newMatrix[i] = new int[this.matrix[i].length + 1];
+                for (int j = 0; j < this.matrix[i].length; j++) {
+                    newMatrix[i][j] = this.matrix[i][j];
+                }
+            } else {
+                newMatrix[i] = this.matrix[i];
+            }
+
+        }
+        newMatrix[line][newMatrix[line].length - 1] = element;
+        this.matrix = newMatrix;
+        }
+
+    //d) Retire o primeiro elemento do array encapsulado com um determinado valor (percorrendo
+    //primeiramente as linhas). A linha onde o elemento for retirado, ficará com menos uma coluna.
+    public void removeElement(int element) {
+        int[] rowAndCol = getRowAndColOfElement(element);
+        int[][] newMatrix = new int[this.matrix.length][];
+        for (int i = 0; i < this.matrix.length; i++) {
+            if (i == rowAndCol[0]) {
+                newMatrix[i] = new int[this.matrix[i].length - 1];
+                int index = 0;
+                for (int j = 0; j < this.matrix[i].length; j++) {
+                    if (j != rowAndCol[1]) {
+                        newMatrix[i][index] = this.matrix[i][j];
+                        index++;
+                    }
+                }
+            } else {
+                newMatrix[i] = this.matrix[i];
+            }
+        }
+        this.matrix = newMatrix;
+    }
+    private int[] getRowAndColOfElement(int element) {
+        int[] rowAndCol = new int[2];
+        for (int i = 0; i < this.matrix.length; i++) {
+            for (int j = 0; j < this.matrix[i].length; j++) {
+                if (this.matrix[i][j] == element) {
+                    rowAndCol[0] = i;
+                    rowAndCol[1] = j;
+                    return rowAndCol;
+                }
+            }
+        }
+        return rowAndCol;
+    }
+    //e) Retorne True caso a matriz esteja vazia e False em caso contrário.
+    public boolean isEmpty() {
+        return this.matrix.length == 0;
     }
     //f) Retorne o maior elemento do array.
     public int returnsBiggestElement() {
-        int biggestElement = 0;
+        int biggestElement = Integer.MIN_VALUE;
         for (int[] ints : this.matrix) {
             for (int anInt : ints) {
                 if (anInt > biggestElement) {
@@ -23,6 +84,7 @@ public class Matrix {
         }
         return biggestElement;
     }
+    //g) Retorne o menor elemento do array.
     //i ) Retorne um vetor em que cada posição corresponde à soma dos elementos da linha homóloga
     //do array encapsulado.
     public int[] returnsSumOfEachLine() {
