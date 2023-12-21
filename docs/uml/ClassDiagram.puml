@@ -1,0 +1,93 @@
+@startuml
+!pragma layout smetana
+class House {
+-name: String
+-address: String
+-zipCode: String
+-gpsLocation: String
+-rooms: List<Room>
+-users: List<User>
++House(address: String, zipCode: String, gpsLocation: String)
++setAdress(address: String) : void
++setZipCode(zipCode: String) : void
++setGpsLocation(gpsLocation: String) : void
++listRooms() : List<Room>
+}
+' Room is a class that represents a room/divistion of the house, we will be considering
+' that a room can be a bedroom, a kitchen but also a garden or a garage
+class Room {
+
+-name: String
+-floor: Integer
+-length: double
+-width: double
+-height: double
+-devices: List<Device>
+-owners: List<User>
++Room(name: String, floor: Integer, dimensions: double)
++addDevice(name: String, type: String, location: Room) : void
+
+}
+' We can get the device type by a method checking
+' the type of the sensors and actuators
+class Device {
+-name: String
+-location: Room
+-sensors: List<Sensor>
+-actuators: List<Actuator>
++Device(name : String, location : Room, sensors : List<Sensor>, actuators : List<Actuator>)
++getDeviceType() : List<SupportedType>
+}
+
+class Sensor {
+-name: String
+-type: List<SupportedType>
+-state: boolean
++Type(name: String, units: String, digital: boolean)
+
+
+
+}
+class SupportedType {
+-type: List<Type>
+}
+class Type {
+-name: String
+-units: String
+-digital: boolean
+
+
+}
+class Actuator {
+-name: String
+-type: List<SupportedType>
+-state: boolean
+
+}
+
+class User {
+
+-username: String
+-roles: List<Role>
+
+}
+
+class Role {
+
+-name: String
+
+
+}
+
+House "1" -- "0..*" Room : contains
+Room "1"-- "0..*" Device : contains
+Device "1" --"1..*" Sensor : has a
+Device "1" --"0..*" Actuator : has a
+House "1" -- "1..*" User : has
+Room "1" -- "0..*" User : has
+User "1"-- "1..*" Role : has
+Sensor "1" -- "1" SupportedType : has
+Actuator "1" -- "1" SupportedType : has
+SupportedType "1" -- "0..*" Type : has
+
+@enduml

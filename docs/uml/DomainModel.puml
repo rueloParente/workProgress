@@ -1,0 +1,80 @@
+@startuml
+!pragma layout smetana
+class House {
+-name: String
+-address: String
+-zipCode: String
+-gpsLocation: String
+-rooms: List<Room>
+-users: List<User>
+
+}
+
+class Room {
+
+-name: String
+-floor: Integer
+-length: double
+-width: double
+-height: double
+-devices: List<Device>
+-owners: List<User>
+
+}
+
+class Device {
+-name: String
+-location: Room
+-state : boolean
+-sensors: List<Sensor>
+-actuators: List<Actuator>
+}
+
+class Sensor {
+-name: String
+-type: Type
+-location: Room
+-state: boolean
+
+
+
+}
+class Type {
+-name: String
+
+
+
+}
+class Actuator {
+-name: String
+-type: Type
+-location: Room
+-state: boolean
+
+}
+
+class User {
+
+-username: String
+-roles: List<Role>
+
+}
+
+class Role {
+
+-name: String
+
+
+}
+
+House "1" -- "0..*" Room : contains
+Room "1"-- "0..*" Device : contains
+Device "1" --"1..*" Sensor : has a
+Device "1" --"0..*" Actuator : has a
+House "1" -- "1..*" User : has
+Room "1" -- "0..*" User : has
+User "1"-- "1..*" Role : has
+Sensor "1" -- "1" Type : has
+Actuator "1" -- "1" Type : has
+
+@enduml
