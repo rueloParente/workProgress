@@ -22,4 +22,7 @@ public class House {
     public List<Room> listRooms() {
         return List.copyOf(this.rooms);
     }
+    public void setLocation(Location location) {
+        this.location = location;
+    }
 }

@@ -28,4 +28,25 @@ public class Room {
         this.devices = new ArrayList<>();
         this.owners = new ArrayList<>();
     }
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) throws IllegalArgumentException {
+        if (name == null || name.trim().isEmpty()) {
+            throw new IllegalArgumentException("Please enter a valid name for the room.");
+        }
+        this.name = name;
+    }
+    public int getFloor() {
+        return floor;
+    }
+    public void setFloor(int floor) {
+        this.floor = floor;
+    }
+    public RoomDimensions getDimensions() {
+        return new RoomDimensions(dimensions.getWidth(), dimensions.getLength(), dimensions.getHeight());
+    }
+    public void setDimensions(RoomDimensions dimensions) {
+        this.dimensions = dimensions;
+    }
 }
