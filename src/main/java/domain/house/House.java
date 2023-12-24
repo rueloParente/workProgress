@@ -5,26 +5,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class House {
-    private String address;
-    private String zipCode;
-    private String gpsLocation;
+    private Location location;
     private List<Room> rooms;
     private List<User> users;
-
-    public House(String address, String zipCode, String gpsLocation) {
-        this.address = address;
-        this.zipCode = zipCode;
-        this.gpsLocation = gpsLocation;
+    public House(Location location) {
+        this.location = location;
         this.rooms = new ArrayList<>();
         this.users = new ArrayList<>();
     }
-
+    public void addRoom(Room room) throws IllegalArgumentException {
+        if (this.rooms.contains(room)) {
+            throw new IllegalArgumentException("Room already exists.");
+        }
+        else this.rooms.add(room);
+    }
     public List<Room> listRooms() {
-        return this.rooms;
+        return List.copyOf(this.rooms);
     }
-
-    public void addUser(User user) {
-        this.users.add(user);
-    }
-
 }

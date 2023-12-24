@@ -1,72 +1,100 @@
 @startuml
 !pragma layout smetana
 class House {
-  -address: String
-  -zipCode: String
-  -gpsLocation: String
-  -rooms: List<Room>
-  -users: List<User>
-  +House(address: String, zipCode: String, gpsLocation: String)
-  +listRooms() : List<Room>
+-address: String
+-zipCode: String
+-gpsLocation: String
+-rooms: List<Room>
+-users: List<User>
++House (address: String, zipCode: String, gpsLocation: String): void
++setAddress (address: String): void
++setZipCode (zipCode: String) : void
++setGpsLocation (gpsLocation: String): void
++addRoom (room: Room) : void
++getRooms (): List<Room>
 }
-class HouseManager {
--house: House
-+HouseManager(house: House)
-+addRoom(room: Room) : void
-+listRooms() : List<Room>
-}
-
+' Room is a class that represents a room/divistion of the house, we will be considering
+' that a room can be a bedroom, a kitchen but also a garden or a garage
 class Room {
-  -name: String
-  -floor: Integer
-  -length: double
-  -width: double
-  -height: double
-  -devices: List<Device>
-  -owners: List<User>
-  +Room(name: String, floor: Integer, length: double, width: double, height: double)
-  +addDevice(Device device) : void
-  +addOwner(User user) : void
+
+-name: String
+-floor: Integer
+-length: double
+-width: double
+-height: double
+-devices: List<Device>
+-owners: List<User>
++Room (name: String, floor: Integer, length: double, width: double, height: double): void
++setName (name: String): void
++setFloor (floor: Integer): void
++setLength (length: double): void
++setWidth (width: double): void
++setHeight (height: double): void
++getName (): String
++getFloor (): Integer
++getLength (): double
++getWidth (): double
++getHeight (): double
++addDevice (device: Device): void
+
 }
 
+' We can get the device type by a method checking
+' the type of the sensors and actuators
 class Device {
-  -name: String
-  -location: Room
-  -type: Type
-  -sensors: List<Sensor>
-  -actuators: List<Actuator>
-  +Device(name : String, location : Room, type : Type)
-  +addSensor(Sensor sensor) : void
-  +addActuator(Actuator actuator) : void
+-name: String
+-location: Room
+-sensors: List<Sensor>
+-actuators: List<Actuator>
+-type: List<SupportedType>
++Device (name: String, List<Sensor>, List<Actuator>, List<SupportedType>): void
++setLocation (location: Room): void
 }
 
 class Sensor {
-  -name: String
-  -type: Type
-  -value: String
-}
+-name: String
+-type: List<SupportedType>
+-state: boolean
++Sensor (name: String, List<SupportedType>, boolean): void
++setType (type: List<SupportedType>): void
 
-class Actuator {
-  -name: String
-  -type: Type
-  -value: String
-}
 
+
+}
+class SupportedType {
+-type: List<Type>
++SupportedType (type: List<Type>): void
++addType (type: Type): void
++getType (): List<Type>
+}
 class Type {
-  -name: String
-  -units: String
-  -digital: boolean
+-name: String
+-units: String
+-digital: boolean
++Type (name: String, units: String, digital: boolean): void
+
+
+}
+class Actuator {
+-name: String
+-type: List<SupportedType>
+-state: boolean
+
 }
 
 class User {
-  -username: String
-  -roles: List<Role>
+
+-username: String
+-roles: List<Role>
+
 }
 
 class Role {
-  -name: String
-}
 
+-name: String
+
+
+}
 
 House "1" -- "0..*" Room : contains
 Room "1"-- "0..*" Device : contains
@@ -75,7 +103,8 @@ Device "1" --"0..*" Actuator : has a
 House "1" -- "1..*" User : has
 Room "1" -- "0..*" User : has
 User "1"-- "1..*" Role : has
-Sensor "1" -- "1" Type : has
-Actuator "1" -- "1" Type : has
-HouseManager "1" -- "1" House : manages
+Sensor "1" -- "1" SupportedType : has
+Actuator "1" -- "1" SupportedType : has
+SupportedType "1" -- "0..*" Type : has
+
 @enduml

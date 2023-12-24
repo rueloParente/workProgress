@@ -1,21 +1,23 @@
 package domain.device;
 
-import domain.deviceType.SupportedTypes;
+
+import domain.deviceType.SensorTypes;
+import domain.deviceType.Type;
 
 public class Sensor {
     private String name;
-    private SupportedTypes type;
+    private  Type type;
     private boolean state;
     private String description;
+    private SensorTypes sensorTypes;
 
-    public Sensor(String name, SupportedTypes type, boolean state, String description) {
+    public Sensor(String name, Type type, String description, SensorTypes sensorTypes) {
+        if (sensorTypes.getSensorTypes().contains(type)) {
+            this.type = type;
+        } else {
+            throw new IllegalArgumentException("The type " + type.getName() + " is not supported.");
+        }
         this.name = name;
-        this.type = type;
-        this.state = state;
         this.description = description;
     }
-    protected SupportedTypes getType() {
-        return this.type;
-    }
-
 }

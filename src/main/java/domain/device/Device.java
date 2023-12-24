@@ -1,6 +1,6 @@
 package domain.device;
 
-import domain.deviceType.SupportedTypes;
+import domain.deviceType.DeviceTypes;
 import domain.house.Room;
 
 import java.util.ArrayList;
@@ -19,18 +19,4 @@ public class Device {
         this.actuators = actuators;
     }
 
-    public List<SupportedTypes> getType() {
-        List<SupportedTypes> list = new ArrayList<>();
-     for (Sensor sensor : sensors) {
-         if (sensor.getType() != null) {
-             list.add(sensor.getType());
-         }
-     }
-        for (Actuator actuator : actuators) {
-            if (actuator.getType() != null) {
-                list.add(actuator.getType());
-            }
-        }
-        return list;
-    }
 }
