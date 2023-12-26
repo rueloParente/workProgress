@@ -4,7 +4,6 @@ public class Location {
     private String address;
     private String zipCode;
     private String gpsLocation;
-
     public Location(String address, String zipCode, String gpsLocation)throws IllegalArgumentException {
         if (address == null || address.trim().isEmpty()) {
             throw new IllegalArgumentException("Please enter a valid address for the house.");

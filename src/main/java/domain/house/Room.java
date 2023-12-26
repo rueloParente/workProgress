@@ -43,10 +43,5 @@ public class Room {
     public void setFloor(int floor) {
         this.floor = floor;
     }
-    public RoomDimensions getDimensions() {
-        return new RoomDimensions(dimensions.getWidth(), dimensions.getLength(), dimensions.getHeight());
-    }
-    public void setDimensions(RoomDimensions dimensions) {
-        this.dimensions = dimensions;
-    }
+
 }

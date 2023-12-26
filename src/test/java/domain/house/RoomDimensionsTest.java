@@ -28,7 +28,9 @@ class RoomDimensionsTest {
         double height = 5;
 
         // Act and Assert
-        assertThrows(IllegalArgumentException.class, () -> new RoomDimensions(width, length, height));
+        IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class, () -> new RoomDimensions(width, length, height));
+        //Expected message
+        assertEquals("Width and length must be positive values. Height must be a non-negative value", thrown.getMessage());
     }
 
     @Test
@@ -101,14 +103,14 @@ class RoomDimensionsTest {
     @Test
     void testSetHeight_zeroShouldUpdateValue() {
         // Arrange
-        double height = 0;
         RoomDimensions roomDimensions = new RoomDimensions(3, 4, 5);
         // Act
+        double height = 0;
         roomDimensions.setHeight(height);
         // Assert
         assertEquals(3, roomDimensions.getWidth());
         assertEquals(4, roomDimensions.getLength());
-        assertEquals(roomDimensions.getHeight(), height);
+        assertEquals(height, roomDimensions.getHeight());
     }
 
     @Test
