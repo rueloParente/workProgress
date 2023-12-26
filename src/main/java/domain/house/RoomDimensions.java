@@ -1,5 +1,6 @@
 package domain.house;
 
+//Luisa
 public class RoomDimensions {
     private double width;
     private double length;
@@ -14,7 +15,7 @@ public class RoomDimensions {
         this.length = length;
         this.height = height;
     }
-
+//Luisa
     public void setHeight(double height) throws IllegalArgumentException {
         if (height < 0) {
             throw new IllegalArgumentException("Height must be a non-negative value");

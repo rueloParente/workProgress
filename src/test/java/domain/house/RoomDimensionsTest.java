@@ -3,6 +3,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class RoomDimensionsTest {
+    //Luisa
     @Test
     void testConstructor_validInput() {
         // Arrange
@@ -90,6 +91,7 @@ class RoomDimensionsTest {
         assertEquals(roomDimensions.getLength(), length);
         assertEquals(roomDimensions.getHeight(), height);
     }
+    //Luisa
 
     @Test
     void testSetHeight_negativeImputShouldThrowExeption() {

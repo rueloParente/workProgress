@@ -5,7 +5,7 @@ import domain.user.User;
 
 import java.util.ArrayList;
 import java.util.List;
-
+//Luisa
 public class Room {
     private String name;
     private int floor;
@@ -28,6 +28,7 @@ public class Room {
         this.devices = new ArrayList<>();
         this.owners = new ArrayList<>();
     }
+    //Luisa
     public String getName() {
         return name;
     }

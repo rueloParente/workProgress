@@ -13,12 +13,14 @@ public class House {
         this.rooms = new ArrayList<>();
         this.users = new ArrayList<>();
     }
+    //Luisa
     public void addRoom(Room room) throws IllegalArgumentException {
         if (this.rooms.contains(room)) {
             throw new IllegalArgumentException("Room already exists.");
         }
         else this.rooms.add(room);
     }
+    //Luisa
     public List<Room> listRooms() {
         return List.copyOf(this.rooms);
     }
